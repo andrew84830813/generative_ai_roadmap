@@ -3,18 +3,20 @@ Generative AI Roadmap
 
 ## Slide 2: Agenda & Objectives
 **Agenda:**
-1. Introduction to Generative AI  
-2. What is a Generative AI Application?  
-3. Fundamentals of Machine Learning & Neural Networks (TensorFlow/Keras)  
-4. Transformers & "Attention Is All You Need"  
-5. Popular Tools in Generative AI  
-6. Prompt Engineering Techniques  
-7. Experimentation & Data Preprocessing with MLflow  
-8. Software Development: GitHub and Modular Code  
-9. Fine-Tuning, Transfer Learning, LoRA  
-10. Retrieval-Augmented Generation (RAG) & Vector Databases  
-11. LLM Integration & Deployment (Plotly, Model Serving)  
-12. Summary & Q&A  
+1. ....  
+2. .... 
+3. What is Generative AI?
+4. What is a Generative AI Application?
+5. Fundamentals of Machine Learning & Neural Networks (TensorFlow/Keras)  
+6. Transformers & "Attention Is All You Need" 
+7. Foundation Models, LLM, and SLM  
+8. Popular Tools in Generative AI  
+9. Prompt Engineering Techniques  
+10. Software Development for AI: GitHub and Modular Code  
+11. Fine-Tuning, Transfer Learning, LoRA
+12. Retrieval-Augmented Generation (RAG) & Vector Databases
+13. Tool Binding & Structured Output
+ 
 
 **Objectives:**
 - Understand generative AI basics and its relevance to cybersecurity.
