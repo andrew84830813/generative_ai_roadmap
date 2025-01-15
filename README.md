@@ -451,6 +451,79 @@ print(result)
 - Dive into provided resources and code examples.
 - Experiment with frameworks and methodologies in your own projects.
 - Engage with communities and further learning to continually expand your AI expertise.
+- 
+
+# Demo
+```python
+import os
+import streamlit as st
+#from PyPDF2 import PdfReader
+#from pptx import Presentation
+from langchain.chains import RetrievalQA
+from langchain_openai import OpenAI
+from dotenv import load_dotenv
+from langchain.prompts import PromptTemplate
+#from langchain.embeddings.openai import OpenAIEmbeddings
+
+
+
+# Streamlit app
+# st.title("PDF-to-PowerPoint Summarizer")
+# uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
+
+# Load environment variables
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    st.error("OpenAI API key not found. Set it in the .env file.")
+    st.stop()
+
+llm = OpenAI(model="gpt-3.5-turbo-instruct", openai_api_key=OPENAI_API_KEY)
+
+
+prompt_template = PromptTemplate.from_template("""
+You are a cybersecurity analyst AI. Examine the following commands and describe what is potentially happening, especially noting any indications of LOLBin abuse or malicious behavior.
+
+Commands:
+{commands}
+
+Provide a detailed analysis of the potential risks or malicious intent behind these commands.
+""")
+
+chain = prompt_template | llm
+
+
+
+command_input = r"""
+rundll32.exe C:\Users\Public\Document\file.dll,RS32
+rundll32.exe C:\programdata\putty.jpg,Wind
+"""
+
+chain.invoke({"commands": command_input})
+
+# Streamlit interface
+st.title("LOLBins Analyzer")
+
+st.write("Paste suspicious commands below to analyze potential LOLBin abuse.")
+
+commands_input = st.text_area("Suspicious Commands", height=150, placeholder="Enter commands here...")
+
+if st.button("Analyze"):
+    if commands_input.strip():
+        # Escape backslashes to mimic raw string behavior
+        raw_commands_input = commands_input.replace("\\", "\\\\")
+
+        with st.spinner("Analyzing..."):
+            # Pass the escaped string to LangChain
+            result = chain.invoke({"commands": raw_commands_input})
+
+
+        st.subheader("Analysis Result:")
+        st.text_area(label="", value=result, height=300)
+    else:
+        st.warning("Please enter some commands before analyzing.")
+
+```
 
 ## Resources: Resources & References
 
