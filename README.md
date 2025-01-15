@@ -459,15 +459,10 @@ print(result)
 ```python
 import os
 import streamlit as st
-#from PyPDF2 import PdfReader
-#from pptx import Presentation
 from langchain.chains import RetrievalQA
 from langchain_openai import OpenAI
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
-#from langchain.embeddings.openai import OpenAIEmbeddings
-
-
 
 # Streamlit app
 # st.title("PDF-to-PowerPoint Summarizer")
@@ -480,9 +475,10 @@ if not OPENAI_API_KEY:
     st.error("OpenAI API key not found. Set it in the .env file.")
     st.stop()
 
+# initialize model
 llm = OpenAI(model="gpt-3.5-turbo-instruct", openai_api_key=OPENAI_API_KEY)
 
-
+# Define Prompt Template
 prompt_template = PromptTemplate.from_template("""
 You are a cybersecurity analyst AI. Examine the following commands and describe what is potentially happening, especially noting any indications of LOLBin abuse or malicious behavior.
 
@@ -492,9 +488,8 @@ Commands:
 Provide a detailed analysis of the potential risks or malicious intent behind these commands.
 """)
 
+# Define model
 chain = prompt_template | llm
-
-
 
 command_input = r"""
 rundll32.exe C:\Users\Public\Document\file.dll,RS32
